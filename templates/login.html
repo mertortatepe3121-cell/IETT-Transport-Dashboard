@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>İstanbul Ulaşım Veri Analiz Platformu</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <!-- =====================================================
+             SOL TARAF
+        ====================================================== -->
+
+        <section class="login-info">
+
+            <div class="info-content">
+
+                <div class="iett-badge">
+                    İETT
+                </div>
+
+                <div class="info-title">
+                    İstanbul Ulaşım
+                    <span>Veri Analiz Platformu</span>
+                </div>
+
+                <p class="info-description">
+                    İstanbul toplu taşıma verilerini tek bir platform
+                    üzerinden görüntüleyin, inceleyin ve analiz edin.
+                </p>
+
+                <div class="info-features">
+
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Güncel ve Güvenilir Veriler</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">↗</span>
+                        <span>Detaylı Analiz ve Raporlama</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">⌕</span>
+                        <span>Hızlı ve Kolay Erişim</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">◈</span>
+                        <span>İETT Resmi Veri Kaynakları</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Dekoratif İstanbul ulaşım çizgileri -->
+
+            <div class="city-decoration">
+
+                <div class="bridge-line bridge-1"></div>
+                <div class="bridge-line bridge-2"></div>
+                <div class="bridge-line bridge-3"></div>
+
+                <div class="tower tower-left"></div>
+                <div class="tower tower-right"></div>
+
+                <div class="road-line road-1"></div>
+                <div class="road-line road-2"></div>
+
+                <div class="bus-shape bus-1"></div>
+                <div class="bus-shape bus-2"></div>
+
+            </div>
+
+            <div class="info-year">
+                2026
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SAĞ TARAF
+        ====================================================== -->
+
+        <section class="login-form-area">
+
+            <div class="login-form-wrapper">
+
+                <!-- İBB + İETT LOGOSU -->
+
+                <div class="institution-logo">
+
+                    <img
+    src="{{ url_for('static', filename='images/ibb-iett-logo.png') }}"
+    alt="İstanbul Büyükşehir Belediyesi ve İETT"
+>
+
+                </div>
+
+
+                <!-- Başlık -->
+
+                <div class="welcome-section">
+
+                    <div class="platform-name">
+                        İSTANBUL ULAŞIM VERİ ANALİZ PLATFORMU
+                    </div>
+
+                    <h1>
+                        Hoş Geldiniz
+                    </h1>
+
+                    <p>
+                        Platforma devam etmek için giriş yapın.
+                    </p>
+
+                </div>
+
+
+                <!-- HATA MESAJI -->
+
+                {% if hata %}
+
+                <div class="login-error">
+                    {{ hata }}
+                </div>
+
+                {% endif %}
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    method="POST"
+                    action="{{ url_for('login') }}"
+                    class="login-form"
+                >
+
+                    <!-- Kullanıcı adı -->
+
+                    <div class="form-group">
+
+                        <label for="kullanici_adi">
+                            Kullanıcı Adı
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="kullanici_adi"
+                                name="kullanici_adi"
+                                placeholder="Kullanıcı adınızı girin"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Şifre -->
+
+                    <div class="form-group">
+
+                        <label for="sifre">
+                            Şifre
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="sifre"
+                                name="sifre"
+                                placeholder="Şifrenizi girin"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                                aria-label="Şifreyi göster/gizle"
+                            >
+                                ◉
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Alt seçenekler -->
+
+                    <div class="form-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+
+                            <span>
+                                Beni hatırla
+                            </span>
+
+                        </label>
+
+                        <a
+    href="{{ url_for('sifre_unuttum') }}"
+    class="forgot-password"
+>
+    Şifremi unuttum?
+</a>
+
+                    </div>
+
+
+                    <!-- GİRİŞ -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+
+                        <span>
+                            Giriş Yap
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- FOOTER -->
+
+                <div class="login-footer">
+
+                    <div class="footer-line"></div>
+
+                    <p>
+                        © 2026 İstanbul Elektrik Tramvay ve Tünel İşletmeleri
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Şifre göster/gizle -->
+
+    <script>
+
+        function togglePassword() {
+
+            const passwordInput =
+                document.getElementById("sifre");
+
+            const toggleButton =
+                document.querySelector(".password-toggle");
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+                toggleButton.textContent = "◉";
+
+            } else {
+
+                passwordInput.type = "password";
+                toggleButton.textContent = "◉";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1130 @@
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body.login-page {
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #eef2f5;
+    color: #111c31;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   ANA CONTAINER
+========================================================= */
+
+.login-container {
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   SOL PANEL
+========================================================= */
+
+.login-info {
+
+    position: relative;
+
+    width: 50%;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(25, 224, 179, 0.08),
+            transparent 28%
+        ),
+        #081526;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 70px 70px 55px;
+}
+
+
+/* Dekoratif büyük daireler */
+
+.login-info::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    border-radius: 50%;
+
+    top: -280px;
+    left: -180px;
+}
+
+.login-info::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 620px;
+    height: 620px;
+
+    border: 1px solid rgba(28, 225, 181, 0.05);
+
+    border-radius: 50%;
+
+    bottom: -380px;
+    right: -220px;
+}
+
+
+/* =========================================================
+   SOL PANEL İÇERİK
+========================================================= */
+
+.info-content {
+
+    position: relative;
+    z-index: 5;
+
+    max-width: 560px;
+}
+
+
+/* İETT kutusu */
+
+.iett-badge {
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #0b1830;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    margin-bottom: 38px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+/* Sol başlık */
+
+.info-title {
+
+    font-size: 42px;
+    line-height: 1.08;
+
+    font-weight: 700;
+
+    letter-spacing: -1.2px;
+
+    margin-bottom: 28px;
+}
+
+.info-title span {
+
+    display: block;
+
+    color: #19d9ae;
+
+    margin-top: 4px;
+}
+
+
+/* Açıklama */
+
+.info-description {
+
+    max-width: 520px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #aebdce;
+
+    margin-bottom: 42px;
+}
+
+
+/* =========================================================
+   ÖZELLİKLER
+========================================================= */
+
+.info-features {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.feature {
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    color: #d8e2ec;
+
+    font-size: 14px;
+}
+
+.feature-icon {
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid rgba(25,217,174,0.65);
+
+    border-radius: 6px;
+
+    color: #19d9ae;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   ŞEHİR DEKORASYONU
+========================================================= */
+
+.city-decoration {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 190px;
+
+    opacity: 0.6;
+}
+
+
+/* Köprü */
+
+.bridge-line {
+
+    position: absolute;
+
+    height: 1px;
+
+    background: rgba(25,217,174,0.35);
+
+    transform-origin: left center;
+}
+
+.bridge-1 {
+
+    width: 400px;
+
+    bottom: 90px;
+    left: 40px;
+
+    transform: rotate(-8deg);
+}
+
+.bridge-2 {
+
+    width: 320px;
+
+    bottom: 105px;
+    left: 80px;
+
+    transform: rotate(8deg);
+}
+
+.bridge-3 {
+
+    width: 500px;
+
+    bottom: 70px;
+    left: 20px;
+
+    transform: rotate(-2deg);
+}
+
+
+/* Kuleler */
+
+.tower {
+
+    position: absolute;
+
+    bottom: 38px;
+
+    width: 2px;
+
+    background: rgba(25,217,174,0.25);
+}
+
+.tower-left {
+
+    left: 145px;
+    height: 120px;
+}
+
+.tower-right {
+
+    left: 440px;
+    height: 95px;
+}
+
+
+/* Yol çizgileri */
+
+.road-line {
+
+    position: absolute;
+
+    height: 1px;
+
+    background: rgba(25,217,174,0.2);
+
+    bottom: 30px;
+}
+
+.road-1 {
+
+    width: 650px;
+    left: 10px;
+
+    transform: rotate(-2deg);
+}
+
+.road-2 {
+
+    width: 550px;
+    left: 70px;
+
+    transform: rotate(4deg);
+}
+
+
+/* Otobüs */
+
+.bus-shape {
+
+    position: absolute;
+
+    bottom: 18px;
+
+    width: 130px;
+    height: 35px;
+
+    border: 1px solid rgba(25,217,174,0.32);
+
+    border-radius: 5px 5px 2px 2px;
+}
+
+.bus-shape::before,
+.bus-shape::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border: 1px solid rgba(25,217,174,0.4);
+
+    border-radius: 50%;
+
+    bottom: -7px;
+}
+
+.bus-shape::before {
+    left: 18px;
+}
+
+.bus-shape::after {
+    right: 18px;
+}
+
+.bus-1 {
+    left: 70px;
+}
+
+.bus-2 {
+    left: 270px;
+    transform: scale(0.75);
+}
+
+
+/* Yıl */
+
+.info-year {
+
+    position: relative;
+
+    z-index: 5;
+
+    color: rgba(174,189,206,0.5);
+
+    font-size: 16px;
+
+    letter-spacing: 5px;
+
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   SAĞ PANEL
+========================================================= */
+
+.login-form-area {
+
+    width: 50%;
+    min-height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px 80px;
+}
+
+
+/* =========================================================
+   FORM WRAPPER
+========================================================= */
+
+.login-form-wrapper {
+
+    width: 100%;
+    max-width: 510px;
+}
+
+
+/* =========================================================
+   İBB + İETT LOGOSU
+========================================================= */
+
+.institution-logo {
+
+    display: flex;
+
+    justify-content: flex-start;
+
+    margin-bottom: 32px;
+}
+
+.institution-logo img {
+
+    width: 245px;
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================================================
+   HOŞ GELDİNİZ
+========================================================= */
+
+.welcome-section {
+
+    margin-bottom: 34px;
+}
+
+.platform-name {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #55708d;
+
+    margin-bottom: 14px;
+}
+
+.welcome-section h1 {
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    color: #101a2d;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+
+    font-size: 16px;
+
+    color: #72839a;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HATA
+========================================================= */
+
+.login-error {
+
+    background: #fff1f1;
+
+    border: 1px solid #f1b7b7;
+
+    color: #c62828;
+
+    border-radius: 7px;
+
+    padding: 12px 15px;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-form {
+
+    width: 100%;
+}
+
+.form-group {
+
+    margin-bottom: 24px;
+}
+
+.form-group label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #17243a;
+
+    margin-bottom: 9px;
+}
+
+
+/* Input */
+
+.input-wrapper {
+
+    position: relative;
+
+    width: 100%;
+}
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 58px;
+
+    border: 1px solid #d5dce5;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #17243a;
+
+    font-size: 15px;
+
+    padding: 0 48px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-wrapper input::placeholder {
+
+    color: #9aa7b7;
+}
+
+.input-wrapper input:focus {
+
+    border-color: #18bfa0;
+
+    box-shadow:
+        0 0 0 3px rgba(24,191,160,0.10);
+}
+
+
+/* Input ikon */
+
+.input-icon {
+
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 16px;
+
+    opacity: 0.55;
+
+    z-index: 2;
+}
+
+
+/* Şifre butonu */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #74849a;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   FORM OPTIONS
+========================================================= */
+
+.form-options {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: -5px;
+
+    margin-bottom: 27px;
+}
+
+.remember-me {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #66778d;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.remember-me input {
+
+    width: 15px;
+    height: 15px;
+
+    accent-color: #19bfa1;
+
+    cursor: pointer;
+}
+
+.forgot-password {
+
+    color: #159f89;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   GİRİŞ BUTONU
+========================================================= */
+
+.login-button {
+
+    width: 100%;
+
+    height: 58px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #159f89;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-button:hover {
+
+    background: #108b78;
+
+    box-shadow:
+        0 8px 20px rgba(21,159,137,0.20);
+}
+
+.login-button:active {
+
+    transform: translateY(1px);
+}
+
+.button-arrow {
+
+    position: absolute;
+
+    right: 20px;
+
+    font-size: 21px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.login-footer {
+
+    margin-top: 40px;
+}
+
+.footer-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    background: #e4e8ed;
+
+    margin-bottom: 22px;
+}
+
+.login-footer p {
+
+    color: #8b99aa;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .login-info {
+        padding: 50px 45px;
+    }
+
+    .login-form-area {
+        padding: 40px;
+    }
+
+    .info-title {
+        font-size: 34px;
+    }
+
+    .institution-logo img {
+        width: 210px;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-info {
+        width: 100%;
+        min-height: 330px;
+
+        padding: 40px 30px;
+    }
+
+    .login-info .info-features {
+        display: none;
+    }
+
+    .info-title {
+        font-size: 30px;
+    }
+
+    .info-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .city-decoration {
+        display: none;
+    }
+
+    .login-form-area {
+        width: 100%;
+        min-height: auto;
+
+        padding: 45px 25px;
+    }
+
+    .institution-logo {
+        justify-content: center;
+    }
+
+    .welcome-section {
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .login-info {
+        min-height: 280px;
+
+        padding: 30px 25px;
+    }
+
+    .iett-badge {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 25px;
+    }
+
+    .info-title {
+        font-size: 27px;
+    }
+
+    .login-form-area {
+        padding: 35px 20px;
+    }
+
+    .welcome-section h1 {
+        font-size: 34px;
+    }
+
+    .form-options {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+}
+
+/* =====================================================
+   LOGIN EKRANI - SON DENGELEMELER
+===================================================== */
+
+/* Sol tarafı biraz genişlet */
+.login-info {
+    flex: 0 0 54%;
+}
+
+/* Sağ beyaz alanı biraz daralt */
+.login-form-area {
+    flex: 0 0 46%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sağdaki içerik alanını daralt ve ortala */
+.login-form-wrapper {
+    width: min(100%, 590px);
+    margin: 0 auto;
+}
+
+/* Logo ve başlık grubunu daha dengeli konumlandır */
+.institution-logo {
+    text-align: center;
+}
+
+.institution-logo img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+}
+
+/* Hoş geldiniz bölümünü biraz daha dengeli yap */
+.welcome-section {
+    margin-top: 28px;
+}
+
+/* Form genişliğini biraz azalt */
+.login-form {
+    width: 100%;
+}
+
+/* Footer da form ile aynı genişlikte kalsın */
+.login-footer {
+    width: 100%;
+}
+
+/* =====================================================
+   LOGIN EKRANI - EKRANA TAM OTURAN SON TASARIM
+===================================================== */
+
+/* Sayfanın kesinlikle scroll yapmasını engelle */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Ana login alanı ekranı tamamen doldursun */
+.login-container {
+    width: 100%;
+    height: 100vh;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+}
+
+/* =====================================================
+   SOL TARAF
+===================================================== */
+
+.login-info {
+    flex: 0 0 54%;
+    height: 100vh;
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   SAĞ TARAF
+===================================================== */
+
+.login-form-area {
+    flex: 0 0 46%;
+    height: 100vh;
+    min-height: 0;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px 55px;
+    overflow: hidden;
+}
+
+/* Sağdaki bütün login içeriği */
+.login-form-wrapper {
+    width: 100%;
+    max-width: 570px;
+    margin: 0 auto;
+
+    /* Dikey boşlukları azalt */
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.institution-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.institution-logo img {
+
+    display: block;
+
+    width: 190px;
+
+    max-width: 235px;
+
+    max-height: 120px;
+
+    height: auto;
+}
+
+/* =====================================================
+   BAŞLIK
+===================================================== */
+
+.welcome-section {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.welcome-section h1 {
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.welcome-section p {
+    margin: 0;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.login-form {
+    width: 100%;
+}
+
+/* Form alanları arasındaki boşluk */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* Inputların yüksekliğini biraz azalt */
+.input-wrapper input {
+    height: 54px;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   ALT SEÇENEKLER
+===================================================== */
+
+.form-options {
+    margin-top: 2px;
+    margin-bottom: 18px;
+}
+
+/* =====================================================
+   GİRİŞ BUTONU
+===================================================== */
+
+.login-button {
+    height: 54px;
+    min-height: 54px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.login-footer {
+    margin-top: 25px;
+}
+
+.footer-line {
+    margin-bottom: 12px;
+}
+
+.login-footer p {
+    margin: 0;
+}

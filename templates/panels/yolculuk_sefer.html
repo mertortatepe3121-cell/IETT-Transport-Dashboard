@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+Yolculuk Sefer | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Yolculuk Sefer</h1>
+    <p>İETT servisinden alınan yolculuk sefer verileri.</p>
+</div>
+
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+    <div>
+        <h2>Yolculuk Sefer Verileri</h2>
+        <span>İETT API verilerinden oluşturulan CSV</span>
+    </div>
+
+    <div class="data-meta">
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ KAYNAĞI</span>
+            <strong>İETT API / CSV</strong>
+        </div>
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ DÖNEMİ</span>
+            <strong>
+                {% if veri_donemi %}
+                    {{ veri_donemi }}
+                {% else %}
+                    Belirtilmemiş
+                {% endif %}
+            </strong>
+        </div>
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ TÜRÜ</span>
+            <strong>
+                {% if veri_turu %}
+                    {{ veri_turu }}
+                {% else %}
+                    Belirtilmemiş
+                {% endif %}
+            </strong>
+        </div>
+
+        <div class="meta-item record-meta">
+            <span class="meta-label">TOPLAM KAYIT</span>
+            <strong>{{ total_records }}</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in yolculuk_verileri %}
+
+                <tr>
+
+                    {% for column in columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if current_page > 1 %}
+
+        <a href="{{ url_for('yolculuk_sefer', page=current_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ current_page }} / {{ total_pages }}
+        </span>
+
+
+        {% if current_page < total_pages %}
+
+        <a href="{{ url_for('yolculuk_sefer', page=current_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

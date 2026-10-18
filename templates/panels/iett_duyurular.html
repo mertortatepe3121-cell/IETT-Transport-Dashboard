@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}
+İETT Duyurular | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>İETT Duyurular</h1>
+    <p>İETT servisinden alınan güncel duyuru verileri.</p>
+</div>
+
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>İETT Duyurular</h2>
+            <span>Kaynak CSV'deki gerçek kayıtlar</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in columns %}
+
+                    <th>{{ column }}</th>
+
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in duyuru_verileri %}
+
+                <tr>
+
+                    {% for column in columns %}
+
+                    <td>{{ row[column] }}</td>
+
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if current_page > 1 %}
+
+        <a href="{{ url_for('iett_duyurular', page=current_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ current_page }} / {{ total_pages }}
+        </span>
+
+
+        {% if current_page < total_pages %}
+
+        <a href="{{ url_for('iett_duyurular', page=current_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

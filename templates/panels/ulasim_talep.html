@@ -1,0 +1,599 @@
+{% extends "base.html" %}
+
+{% block title %}
+Ulaşım Talebi | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Ulaşım Talebi</h1>
+    <p>2020 ve 2040 gerçek ulaşım verilerinin karşılaştırılması.</p>
+</div>
+
+
+<!-- =====================================================
+     2020 HAT / ULAŞIM VERİLERİ
+====================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>2020 Hat Verileri</h2>
+            <span>Kaynak CSV'deki gerçek kayıtlar</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ hat_2020_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in hat_2020_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in hat_2020_verileri %}
+
+                <tr>
+
+                    {% for column in hat_2020_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if hat_2020_page > 1 %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page - 1,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ hat_2020_page }} / {{ hat_2020_total_pages }}
+        </span>
+
+
+        {% if hat_2020_page < hat_2020_total_pages %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page + 1,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     2040 HAT / ULAŞIM VERİLERİ
+====================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>2040 Hat Verileri</h2>
+            <span>Kaynak CSV'deki gerçek kayıtlar</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ hat_2040_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in hat_2040_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in hat_2040_verileri %}
+
+                <tr>
+
+                    {% for column in hat_2040_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if hat_2040_page > 1 %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page - 1,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ hat_2040_page }} / {{ hat_2040_total_pages }}
+        </span>
+
+
+        {% if hat_2040_page < hat_2040_total_pages %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page + 1,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     2020 - 2040 KARŞILAŞTIRMASI
+====================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>Hat Verileri Karşılaştırması</h2>
+            <span>Ortak hat kayıtları üzerinden 2020 ve 2040 değerleri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ comparison_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in comparison_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in comparison_verileri %}
+
+                <tr>
+
+                    {% for column in comparison_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if comparison_page > 1 %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page - 1,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ comparison_page }} / {{ comparison_total_pages }}
+        </span>
+
+
+        {% if comparison_page < comparison_total_pages %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page + 1,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     2020 KARAYOLU AĞI
+====================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>2020 Karayolu Ağı Verileri</h2>
+            <span>Kaynak CSV'deki gerçek kayıtlar</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ road_2020_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in road_2020_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in road_2020_verileri %}
+
+                <tr>
+
+                    {% for column in road_2020_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if road_2020_page > 1 %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page - 1,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ road_2020_page }} / {{ road_2020_total_pages }}
+        </span>
+
+
+        {% if road_2020_page < road_2020_total_pages %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page + 1,
+            road_2040_page=road_2040_page
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     2040 KARAYOLU AĞI
+====================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>2040 Karayolu Ağı Verileri</h2>
+            <span>Kaynak CSV'deki gerçek kayıtlar</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ road_2040_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in road_2040_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in road_2040_verileri %}
+
+                <tr>
+
+                    {% for column in road_2040_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if road_2040_page > 1 %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page - 1
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ road_2040_page }} / {{ road_2040_total_pages }}
+        </span>
+
+
+        {% if road_2040_page < road_2040_total_pages %}
+
+        <a href="{{ url_for(
+            'ulasim_talebi',
+            hat_2020_page=hat_2020_page,
+            hat_2040_page=hat_2040_page,
+            comparison_page=comparison_page,
+            road_2020_page=road_2020_page,
+            road_2040_page=road_2040_page + 1
+        ) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

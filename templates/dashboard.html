@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <!-- =====================================================
+         ÜST BİLGİ ALANI
+    ====================================================== -->
+
+    <div class="dashboard-welcome">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+                İSTANBUL TOPLU TAŞIMA VERİLERİ
+            </span>
+
+            <h1>
+                İstanbul Ulaşım<br>
+                Veri Analiz Platformu
+            </h1>
+
+            <p>
+                İstanbul toplu taşıma verilerini tek bir platform
+                üzerinden görüntüleyin, inceleyin ve analiz edin.
+            </p>
+
+            <div class="welcome-line"></div>
+
+        </div>
+
+        <div class="welcome-icon">
+            <i class="fa-solid fa-city"></i>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PANEL BAŞLIĞI
+    ====================================================== -->
+
+    <div class="dashboard-section-header">
+
+        <div>
+            <h2>Platform Panelleri</h2>
+
+            <p>
+                Aşağıdaki panellerden istediğiniz veriye
+                erişebilir ve detaylı inceleme yapabilirsiniz.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PANEL KARTLARI
+    ====================================================== -->
+
+    <div class="dashboard-cards">
+
+
+        <!-- 1 - Raylı Sistem Seferleri -->
+
+        <a href="/rayli-sistem-seferleri" class="dashboard-card">
+
+            <div class="card-icon green">
+                <i class="fa-solid fa-train-subway"></i>
+            </div>
+
+            <span class="card-period">
+    Veri Dönemi: 2017 – 2025
+</span>
+
+<span class="card-source-name">
+    Açık Veri Adresi: Raylı Sistemler Günlük, Aylık, Yıllık Hat Bazlı Sefer Sayıları
+</span>
+
+            <div class="card-content">
+
+                <h3>Raylı Sistem Seferleri</h3>
+
+                <p>
+                    Raylı sistemlere ait sefer sayılarını
+                    görüntüleyin ve inceleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 2 - Durak & Hat -->
+
+        <a href="/durak-hat" class="dashboard-card">
+
+            <div class="card-icon blue">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+             <span class="card-period">
+        Veri Dönemi: Belirtilmemiş
+    </span>
+
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Durak ve Hat Bilgileri Web Servisi
+</span>
+
+            <div class="card-content">
+
+                <h3>Durak & Hat</h3>
+
+                <p>
+                    Durak ve hat bilgilerini görüntüleyin
+                    ve detaylı şekilde inceleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 3 - Hat-Durak Güzergah -->
+
+        <a href="/hat-durak-guzergah" class="dashboard-card">
+
+            <div class="card-icon purple">
+                <i class="fa-solid fa-route"></i>
+            </div>
+
+             <span class="card-period">
+        Veri Dönemi: Belirtilmemiş
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Hat-Durak-Güzergâh Web Servisi
+</span>
+
+            <div class="card-content">
+
+                <h3>Hat-Durak Güzergah</h3>
+
+                <p>
+                    Hatlara ait durak güzergahlarını
+                    görüntüleyin ve inceleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 4 - Planlanan Seferler -->
+
+        <a href="/planlanan-seferler" class="dashboard-card">
+
+            <div class="card-icon orange">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+             <span class="card-period">
+        Veri Dönemi: Belirtilmemiş
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Planlanan Sefer Saati Web Servisi/GetPlanlananSeferSaati_json
+
+</span>
+
+            <div class="card-content">
+
+                <h3>Planlanan Seferler</h3>
+
+                <p>
+                    Planlanan sefer saatlerini ve sefer
+                    bilgilerini inceleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 5 - Sefer Gerçekleşme -->
+
+        <a href="/sefer-gerceklesme" class="dashboard-card">
+
+            <div class="card-icon cyan">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+             <span class="card-period">
+        Veri Dönemi: Güncel
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Sefer Gerçekleşme Web Servisi
+
+</span>
+
+            <div class="card-content">
+
+                <h3>Sefer Gerçekleşme</h3>
+
+                <p>
+                    Gerçekleşen sefer verilerini
+                    görüntüleyin ve analiz edin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 6 - Yolculuk & Sefer -->
+
+        <a href="/yolculuk-sefer" class="dashboard-card">
+
+            <div class="card-icon pink">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+          <span class="card-period">
+        Veri Dönemi: 18.08.2026(Belirli Tarihteki Anlık)
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Yolculuk ve Sefer Bilgileri Web Servisi
+
+</span>
+
+            <div class="card-content">
+
+                <h3>Yolculuk & Sefer</h3>
+
+                <p>
+                    Yolculuk ve sefer istatistiklerini
+                    görüntüleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 7 - Ulaşım Talebi -->
+
+        <a href="/ulasim-talebi" class="dashboard-card">
+
+            <div class="card-icon yellow">
+                <i class="fa-solid fa-chart-column"></i>
+            </div>
+
+             <span class="card-period">
+        Veri Dönemi: 2020 – 2040
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: Ulaşım Talep Tahmin Modeli Verisi
+
+</span>
+
+            <div class="card-content">
+
+                <h3>Ulaşım Talebi</h3>
+
+                <p>
+                    Ulaşım talebi verilerini görüntüleyin
+                    ve analiz edin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 8 - İETT Duyuruları -->
+
+        <a href="/iett-duyurular" class="dashboard-card">
+
+            <div class="card-icon red">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+             <span class="card-period">
+        Veri Dönemi: Güncel
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: İETT Duyurular Web Servisi
+
+</span>
+
+            <div class="card-content">
+
+                <h3>İETT Duyuruları</h3>
+
+                <p>
+                    İETT tarafından yayınlanan güncel
+                    duyuruları görüntüleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+        <!-- 9 - İETT GTFS -->
+
+        <a href="/iett-gtfs" class="dashboard-card">
+
+            <div class="card-icon database">
+                <i class="fa-solid fa-database"></i>
+            </div>
+        
+    <span class="card-period">
+        Veri Dönemi: 16.03.2026 – 31.12.2026
+    </span>
+    <span class="card-source-name">
+    Açık Veri Adresi: IETT GTFS Data
+
+</span>
+       
+
+            <div class="card-content">
+
+                <h3>İETT GTFS</h3>
+
+                <p>
+                    GTFS veri setlerini görüntüleyin
+                    ve detaylı şekilde inceleyin.
+                </p>
+
+            </div>
+
+            <span class="card-link">
+                İncele
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sefer Gerçekleşme | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Sefer Gerçekleşme</h1>
+    <p>İETT Sefer Gerçekleşme Web Servisi üzerinden alınan gerçek zamanlı araç verileri.</p>
+</div>
+
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+    <div>
+        <h2>Sefer Gerçekleşme Verileri</h2>
+        <span>İBB Sefer Gerçekleşme Web Servisi verilerinden oluşturulan CSV</span>
+    </div>
+
+    <div class="data-meta">
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ KAYNAĞI</span>
+            <strong>İBB Sefer Gerçekleşme Web Servisi / CSV</strong>
+        </div>
+
+       <div class="meta-item">
+    <span class="meta-label">VERİ DURUMU</span>
+    <strong>Güncel</strong>
+</div>
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ TÜRÜ</span>
+            <strong>
+                {% if veri_turu %}
+                    {{ veri_turu }}
+                {% else %}
+                    Belirtilmemiş
+                {% endif %}
+            </strong>
+        </div>
+
+        <div class="meta-item record-meta">
+            <span class="meta-label">TOPLAM KAYIT</span>
+            <strong>{{ total_records }}</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in sefer_verileri %}
+
+                <tr>
+
+                    {% for column in columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if current_page > 1 %}
+
+        <a href="{{ url_for('sefer_gerceklesme', page=current_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span id="pageInfo">
+            {{ current_page }} / {{ total_pages }}
+        </span>
+
+
+        {% if current_page < total_pages %}
+
+        <a href="{{ url_for('sefer_gerceklesme', page=current_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,631 @@
+{% extends "base.html" %}
+
+{% block title %}
+İETT GTFS | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>İETT GTFS</h1>
+    <p>İETT GTFS verilerinden oluşturulan toplu taşıma veri tabloları.</p>
+</div>
+
+
+<!-- =====================================================
+     GTFS HAT VERİLERİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Hat Verileri</h2>
+            <span>GTFS routes.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ routes_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in routes_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in routes_verileri %}
+
+                <tr>
+
+                    {% for column in routes_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if routes_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', routes_page=routes_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+ <span class="pagination-info">
+    {{ routes_page }} / {{ routes_total_pages }}
+</span>
+
+
+        {% if routes_page < routes_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', routes_page=routes_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GTFS SEFER VERİLERİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Sefer Verileri</h2>
+            <span>GTFS trips.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ trips_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in trips_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in trips_verileri %}
+
+                <tr>
+
+                    {% for column in trips_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if trips_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', trips_page=trips_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+       <span class="pagination-info">
+    {{ trips_page }} / {{ trips_total_pages }}
+</span>
+
+
+        {% if trips_page < trips_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', trips_page=trips_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GTFS DURAK VERİLERİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Durak Verileri</h2>
+            <span>GTFS stops.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ stops_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in stops_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in stops_verileri %}
+
+                <tr>
+
+                    {% for column in stops_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if stops_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', stops_page=stops_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+      <span class="pagination-info">
+    {{ stops_page }} / {{ stops_total_pages }}
+</span>
+
+
+        {% if stops_page < stops_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', stops_page=stops_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GTFS SEFER - DURAK ZAMAN VERİLERİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Sefer-Durak Zamanları</h2>
+            <span>GTFS stop_times.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ stop_times_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in stop_times_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in stop_times_verileri %}
+
+                <tr>
+
+                    {% for column in stop_times_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if stop_times_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', stop_times_page=stop_times_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span class="pagination-info">
+    {{ stop_times_page }} / {{ stop_times_total_pages }}
+</span>
+
+
+        {% if stop_times_page < stop_times_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', stop_times_page=stop_times_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GTFS ÇALIŞMA TAKVİMİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Çalışma Takvimi</h2>
+            <span>GTFS calendar.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ calendar_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in calendar_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in calendar_verileri %}
+
+                <tr>
+
+                    {% for column in calendar_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if calendar_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', calendar_page=calendar_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span class="pagination-info">
+    {{ calendar_page }} / {{ calendar_total_pages }}
+</span>
+
+
+        {% if calendar_page < calendar_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', calendar_page=calendar_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GTFS KURUM BİLGİLERİ
+===================================================== -->
+
+<div class="hat-data-panel">
+
+    <div class="hat-data-header">
+
+        <div>
+            <h2>GTFS Kurum Bilgileri</h2>
+            <span>GTFS agency.csv verileri</span>
+        </div>
+
+        <div class="record-info">
+            Toplam
+            <strong>{{ agency_total_records }}</strong>
+            kayıt
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="hat-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in agency_columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for row in agency_verileri %}
+
+                <tr>
+
+                    {% for column in agency_columns %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        {% if agency_page > 1 %}
+
+        <a href="{{ url_for('iett_gtfs', agency_page=agency_page - 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span class="pagination-info">
+    {{ agency_page }} / {{ agency_total_pages }}
+</span>
+
+
+        {% if agency_page < agency_total_pages %}
+
+        <a href="{{ url_for('iett_gtfs', agency_page=agency_page + 1) }}">
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

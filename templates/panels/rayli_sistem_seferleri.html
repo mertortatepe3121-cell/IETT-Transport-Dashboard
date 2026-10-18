@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+Raylı Sistem Seferleri | İstanbul Ulaşım Veri Analiz Platformu
+{% endblock %}
+
+{% block content %}
+
+<div class="rail-page-header">
+    <h1>Raylı Sistem Seferleri</h1>
+    <p>İstanbul raylı sistemlerine ait sefer sayısı verileri.</p>
+</div>
+
+
+<div class="rail-data-panel">
+
+    <div class="rail-data-header">
+
+    <div class="data-title-area">
+        <h2>Raylı Sistem Sefer Verileri</h2>
+
+        <span>
+            İstanbul raylı sistemlerine ait sefer sayısı verileri.
+        </span>
+    </div>
+
+    <div class="data-meta">
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ KAYNAĞI</span>
+            <strong>CSV Veri Seti</strong>
+        </div>
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ DÖNEMİ</span>
+            <strong>
+                {% if veri_donemi %}
+                    {{ veri_donemi }}
+                {% else %}
+                    Belirtilmemiş
+                {% endif %}
+            </strong>
+        </div>
+
+        <div class="meta-item">
+            <span class="meta-label">VERİ TÜRÜ</span>
+            <strong>Günlük / Aylık / Yıllık</strong>
+        </div>
+
+        <div class="meta-item record-meta">
+            <span class="meta-label">TOPLAM KAYIT</span>
+            <strong>{{ total_records }}</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div class="rail-table-container">
+
+        <table class="rail-data-table">
+
+            <thead>
+                <tr>
+
+                    {% for column in columns %}
+
+                    <th>
+                        {{ column }}
+                    </th>
+
+                    {% endfor %}
+
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for row in veriler %}
+
+                <tr>
+
+                    {% for column in columns %}
+
+                    <td>
+                        {{ row[column] }}
+                    </td>
+
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="rail-pagination">
+
+        {% if current_page > 1 %}
+
+        <a href="{{ url_for('rayli_sistem_seferleri', page=current_page - 1) }}">
+
+            <button>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        {% endif %}
+
+
+        <span class="rail-page-info">
+            {{ current_page }} / {{ total_pages }}
+        </span>
+
+
+        {% if current_page < total_pages %}
+
+        <a href="{{ url_for('rayli_sistem_seferleri', page=current_page + 1) }}">
+
+            <button>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </a>
+
+        {% else %}
+
+        <button disabled>
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

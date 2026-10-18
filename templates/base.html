@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}İstanbul Ulaşım Veri Analiz Platformu{% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SOL MENÜ -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+           <div class="brand-logos">
+
+    <img src="{{ url_for('static', filename='images/iettlogo.png') }}"
+     alt="İBB ve İETT"
+     class="ibb-logo">
+
+</div>
+
+            <div class="brand-title">
+                İstanbul Ulaşım
+                <span>Veri Analiz Platformu</span>
+            </div>
+        </div>
+
+
+        <!-- MENÜ -->
+        <nav class="sidebar-menu">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="menu-item {% if active_page == 'dashboard' %}active{% endif %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ url_for('rayli_sistem_seferleri') }}" class="menu-item">
+    <i class="fa-solid fa-train"></i>
+    Raylı Sistem Seferleri
+</a>
+
+            <a href="{{ url_for('durak_hat') }}"
+               class="menu-item {% if active_page == 'durak' %}active{% endif %}">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Durak & Hat</span>
+            </a>
+
+            <a href="{{ url_for('hat_durak_guzergah') }}"
+               class="menu-item {% if active_page == 'guzergah' %}active{% endif %}">
+                <i class="fa-solid fa-route"></i>
+                <span>Hat-Durak Güzergâh</span>
+            </a>
+
+            <a href="{{ url_for('planlanan_seferler') }}"
+               class="menu-item {% if active_page == 'planlanan' %}active{% endif %}">
+                <i class="fa-solid fa-clock"></i>
+                <span>Planlanan Seferler</span>
+            </a>
+
+            <a href="{{ url_for('sefer_gerceklesme') }}"
+               class="menu-item {% if active_page == 'gerceklesme' %}active{% endif %}">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Sefer Gerçekleşme</span>
+            </a>
+
+            <a href="{{ url_for('yolculuk_sefer') }}"
+               class="menu-item {% if active_page == 'yolculuk' %}active{% endif %}">
+                <i class="fa-solid fa-users"></i>
+                <span>Yolculuk & Sefer</span>
+            </a>
+
+            <a href="{{ url_for('ulasim_talebi') }}"
+               class="menu-item {% if active_page == 'talep' %}active{% endif %}">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Ulaşım Talebi</span>
+            </a>
+
+            <a href="{{ url_for('iett_duyurular') }}"
+               class="menu-item {% if active_page == 'duyuru' %}active{% endif %}">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>İETT Duyuruları</span>
+            </a>
+
+            <a href="{{ url_for('iett_gtfs') }}"
+               class="menu-item {% if active_page == 'gtfs' %}active{% endif %}">
+                <i class="fa-solid fa-database"></i>
+                <span>İETT GTFS</span>
+            </a>
+
+        </nav>
+
+
+        <!-- ALT BİLGİ -->
+        <div class="sidebar-footer">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <div>
+                    <strong>Sistem Aktif</strong>
+                    <small>Veri bağlantısı hazır</small>
+                </div>
+            </div>
+
+            <div class="footer-version">
+                İstanbul Ulaşım Platformu
+                <span>v1.0</span>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- SAĞ TARAF -->
+    <main class="main-area">
+
+        <!-- ÜST BAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                
+
+                <div class="page-context">
+                    <span class="context-title">
+                        İstanbul Ulaşım Veri Analiz Platformu
+                    </span>
+
+                    <span class="context-subtitle">
+                        Toplu taşıma verilerini analiz edin
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="topbar-info">
+                    <div class="info-icon calendar-icon">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
+
+                    <div>
+                        <span>TARİH</span>
+                        <strong id="currentDate">--.--.----</strong>
+                    </div>
+                </div>
+
+
+                <div class="topbar-info">
+                    <div class="info-icon clock-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>SAAT</span>
+                        <strong id="currentTime">--:--</strong>
+                    </div>
+                </div>
+
+
+                <div class="user-area">
+
+    <div class="user-profile">
+
+        <div class="user-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="user-details">
+            <span>KULLANICI</span>
+            <strong>Mert Ortatepe</strong>
+        </div>
+
+        <i class="fa-solid fa-chevron-down user-arrow"></i>
+
+    </div>
+
+    <a href="{{ url_for('logout') }}" class="logout-button">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Çıkış</span>
+    </a>
+
+</div>
+
+            </div>
+
+        </header>
+
+
+        <!-- SAYFA İÇERİĞİ -->
+        <section class="content-area">
+
+            {% block content %}
+            {% endblock %}
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
